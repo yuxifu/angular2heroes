@@ -4,44 +4,55 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
-import { OrderListModule } from 'primeng/primeng';
-import { DataTableModule, SharedModule } from 'primeng/primeng';
-import { MessagesModule } from 'primeng/primeng';
-import { ButtonModule } from 'primeng/primeng';
-import {GalleriaModule} from 'primeng/primeng';
-import {ChartModule} from 'primeng/primeng';
-import {GrowlModule} from 'primeng/primeng';
+import {  } from 'primeng/primeng';
+import { OrderListModule, DataTableModule, SharedModule, 
+  MessagesModule, ButtonModule, GalleriaModule, ChartModule, 
+  GrowlModule } from 'primeng/primeng';
 import 'hammerjs';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './heroes/in-memory-data.service';
 
+// app components
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+
+// layout components
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { FooterComponent } from './layout/footer/footer.component';
+
+// auth component
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthComponent } from './auth/auth/auth.component';
+
+// home
+import { HomeComponent } from './home/home.component';
+import { HomeAComponent, DialogResultExampleDialog } from './home/home-a/home-a.component';
+import { HomeBComponent } from './home/home-b/home-b.component';
+
+// heroes
+import { HeroesPanelComponent } from './heroes/heroes-panel/heroes-panel.component';
 import { HeroDetailComponent } from './heroes/hero-detail.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroService } from './heroes/hero.service';
 import { DashboardComponent } from './heroes/dashboard.component';
-import { AppRoutingModule } from './app-routing.module';
 import { HeroSearchComponent } from './heroes/hero-search.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
-import { AuthComponent } from './components/auth/auth.component';
+
+// experimental
 import { ExpcomponentComponent } from './exp/expcomponent/expcomponent.component';
 import { ExpdirectiveDirective } from './exp/expdirective.directive';
 import { ExppipePipe } from './exp/exppipe.pipe';
-import { HomeComponent } from './home/home.component';
-import { HeroesPanelComponent } from './heroes/heroes-panel/heroes-panel.component';
-import { GraphicsComponent } from './graphics/graphics/graphics.component';
-import { PrimengComponent } from './primeng/primeng/primeng.component';
-import { CarService } from './service/carservice'
 
+// graphics
+import { GraphicsComponent } from './graphics/graphics/graphics.component';
 import { PanoramaEquirectangularComponent } from './graphics/panorama-equirectangular/panorama-equirectangular.component';
 import { CubeComponent } from './graphics/cube/cube.component';
-import { HomeAComponent, DialogResultExampleDialog } from './home-a/home-a.component';
-import { HomeBComponent } from './home-b/home-b.component';
+
+// primeng
+import { PrimengComponent } from './primeng/primeng/primeng.component';
+import { CarService } from './service/carservice'
 
 
 @NgModule({
@@ -49,43 +60,45 @@ import { HomeBComponent } from './home-b/home-b.component';
     MaterialModule,
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
-    OrderListModule,
-    DataTableModule,
-    SharedModule,
-    MessagesModule,
-    ButtonModule,
-    GalleriaModule,
-    ChartModule,
-    GrowlModule
+    AppRoutingModule,
+    OrderListModule, DataTableModule, SharedModule,  MessagesModule, 
+    ButtonModule, GalleriaModule, ChartModule, GrowlModule
   ],
   declarations: [
     AppComponent,
+
+    HeroesPanelComponent,
     HeroDetailComponent,
     HeroesComponent,
     DashboardComponent,
     HeroSearchComponent,
+
     NavbarComponent,
     FooterComponent,
+
     LoginComponent,
     SignupComponent,
     AuthComponent,
+
     ExpcomponentComponent,
     ExpdirectiveDirective,
     ExppipePipe,
+
     HomeComponent,
-    HeroesPanelComponent,
-    GraphicsComponent,
-    PrimengComponent,
-    PanoramaEquirectangularComponent,
-    CubeComponent,
     HomeAComponent,
     DialogResultExampleDialog,
-    HomeBComponent
+    HomeBComponent,
+
+    GraphicsComponent,
+    PanoramaEquirectangularComponent,
+    CubeComponent,
+
+    PrimengComponent,
   ],
   providers: [HeroService, CarService],
-  bootstrap: [AppComponent, DialogResultExampleDialog]
+  entryComponents: [DialogResultExampleDialog],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

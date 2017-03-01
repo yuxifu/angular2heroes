@@ -24,7 +24,9 @@
       "../node_modules/primeng/resources/primeng.css",
       "../node_modules/bootstrap/dist/css/bootstrap.min.css"
     ],
-    "scripts": [],
+    "scripts": [
+      "../node_modules/chart.js/dist/Chart.bundle.min.js"
+    ],
     "environmentSource": "environments/environment.ts",
     "environments": {
       "dev": "environments/environment.ts",

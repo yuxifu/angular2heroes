@@ -4,14 +4,14 @@ import { DashboardComponent } from './heroes/dashboard.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './heroes/hero-detail.component';
 import { HomeComponent } from './home/home.component';
-import { HomeAComponent } from './home-a/home-a.component';
-import { HomeBComponent } from './home-b/home-b.component';
+import { HomeAComponent } from './home/home-a/home-a.component';
+import { HomeBComponent } from './home/home-b/home-b.component';
 import { HeroesPanelComponent } from './heroes/heroes-panel/heroes-panel.component';
 import { GraphicsComponent } from './graphics/graphics/graphics.component';
 import { PrimengComponent } from './primeng/primeng/primeng.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: '//home/(home-a:a//home-b:b)', pathMatch: 'full' },
     {
         path: 'home', component: HomeComponent, children: [
             { path: '', redirectTo: '/home/(home-a:a//home-b:b)', pathMatch: 'full' },

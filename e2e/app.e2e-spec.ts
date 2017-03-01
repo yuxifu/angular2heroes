@@ -7,7 +7,7 @@ describe('angular2heroes App', () => {
     page = new Angular2heroesPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying Tour of Heroes', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('Tour of Heroes');
   });

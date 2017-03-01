@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GraphicsComponent } from './graphics.component';
+import { PanoramaEquirectangularComponent } from '../panorama-equirectangular/panorama-equirectangular.component';
+import { CubeComponent } from '../cube/cube.component';
 
 describe('GraphicsComponent', () => {
   let component: GraphicsComponent;
@@ -8,7 +10,7 @@ describe('GraphicsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GraphicsComponent ]
+      declarations: [ GraphicsComponent, PanoramaEquirectangularComponent, CubeComponent ]
     })
     .compileComponents();
   }));

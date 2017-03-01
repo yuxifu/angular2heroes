@@ -3,8 +3,8 @@ import { AppComponent } from './app.component';
 import {
   RouterTestingModule
 } from '@angular/router/testing';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 describe('AppComponent', () => {
   beforeEach(() => {
