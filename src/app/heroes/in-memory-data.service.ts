@@ -1,4 +1,6 @@
-import { InMemoryDbService } from 'angular-in-memory-web-api';
+// 3/8/17: InMemoryDataService is no longer user. Replaced by MockBackend
+
+/*import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
@@ -16,4 +18,4 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
     return {heroes};
   }
-}
+}*/

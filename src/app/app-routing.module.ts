@@ -9,6 +9,12 @@ import { HomeBComponent } from './home/home-b/home-b.component';
 import { HeroesPanelComponent } from './heroes/heroes-panel/heroes-panel.component';
 import { GraphicsComponent } from './graphics/graphics/graphics.component';
 import { PrimengComponent } from './primeng/primeng/primeng.component';
+import { LoginComponent } from './account/login/login.component';
+import { SignupComponent } from './account/signup/signup.component';
+import { AdminComponent } from './account/admin/admin.component';
+import { ProfileComponent } from './account/profile/profile.component';
+import { LogoutComponent } from './account/logout/logout.component'
+import { ExpcomponentComponent } from './exp/expcomponent/expcomponent.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '//home/(home-a:a//home-b:b)', pathMatch: 'full' },
@@ -29,7 +35,17 @@ const routes: Routes = [
     },
     { path: 'graphics', component: GraphicsComponent },
     { path: 'primeng', component: PrimengComponent },
+    { path: 'experimental', component: ExpcomponentComponent },
+    { path: 'admin', component: AdminComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'logout', component: LogoutComponent },
+    { path: 'profile', component: ProfileComponent },
+    { path: 'signup', component: SignupComponent },
+
+    // otherwise redirect to home
+    { path: '**', redirectTo: '' }
 ];
+
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]

@@ -4,15 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
-import {  } from 'primeng/primeng';
-import { OrderListModule, DataTableModule, SharedModule, 
-  MessagesModule, ButtonModule, GalleriaModule, ChartModule, 
-  GrowlModule } from 'primeng/primeng';
+import { } from 'primeng/primeng';
+import {
+  OrderListModule, DataTableModule, SharedModule,
+  MessagesModule, ButtonModule, GalleriaModule, ChartModule,
+  GrowlModule
+} from 'primeng/primeng';
 import 'hammerjs';
 
+// Mock backend
+// No longer user. Replaced by MockBackend
 // Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './heroes/in-memory-data.service';
+// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './heroes/in-memory-data.service';
 
 // app components
 import { AppComponent } from './app.component';
@@ -23,9 +27,12 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
 // auth component
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { AuthComponent } from './auth/auth/auth.component';
+import { AuthComponent } from './auth/auth.component';
+import { LoginComponent } from './account/login/login.component';
+import { SignupComponent } from './account/signup/signup.component';
+import { AdminComponent } from './account/admin/admin.component';
+import { ProfileComponent } from './account/profile/profile.component';
+import { LogoutComponent } from './account/logout/logout.component'
 
 // home
 import { HomeComponent } from './home/home.component';
@@ -52,18 +59,31 @@ import { CubeComponent } from './graphics/cube/cube.component';
 
 // primeng
 import { PrimengComponent } from './primeng/primeng/primeng.component';
-import { CarService } from './service/carservice'
+import { CarService } from './service/carservice';
 
+// fake backend
+import { MockHttpBackend } from './_helpers/index';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { BaseRequestOptions, Http } from '@angular/http';
+import { MockBackendHeroes } from './_mock-backend/mock-backend.heroes';
+import { MockBackendAuth } from './_mock-backend/mock-backend.auth';
+
+// auth
+import { AuthGuard } from './_guards/index';
+import { AuthenticationService, UserService } from './_services/index';
+
+//
+import { FormService } from './_services/form.service';
 
 @NgModule({
   imports: [
     MaterialModule,
     BrowserModule,
     FormsModule,
-    HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
+    //HttpModule,
+    //InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
     AppRoutingModule,
-    OrderListModule, DataTableModule, SharedModule,  MessagesModule, 
+    OrderListModule, DataTableModule, SharedModule, MessagesModule,
     ButtonModule, GalleriaModule, ChartModule, GrowlModule
   ],
   declarations: [
@@ -78,9 +98,12 @@ import { CarService } from './service/carservice'
     NavbarComponent,
     FooterComponent,
 
+    AuthComponent,
     LoginComponent,
     SignupComponent,
-    AuthComponent,
+    AdminComponent,
+    ProfileComponent,
+    LogoutComponent,
 
     ExpcomponentComponent,
     ExpdirectiveDirective,
@@ -97,7 +120,29 @@ import { CarService } from './service/carservice'
 
     PrimengComponent,
   ],
-  providers: [HeroService, CarService],
+  providers: [
+    HeroService,
+    CarService,
+
+    // auth
+    AuthGuard,
+    AuthenticationService,
+    UserService,
+
+    // providers used to create fake backend
+    MockBackend,
+    BaseRequestOptions,
+    {
+      provide: Http,
+      deps: [MockBackend, BaseRequestOptions],
+      useFactory: (backend: MockBackend, options: BaseRequestOptions) => { return new Http(backend, options); }
+    },
+    MockBackendHeroes,
+    MockBackendAuth,
+
+    //
+    FormService
+  ],
   entryComponents: [DialogResultExampleDialog],
   bootstrap: [AppComponent]
 })

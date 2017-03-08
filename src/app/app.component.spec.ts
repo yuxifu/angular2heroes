@@ -5,6 +5,12 @@ import {
 } from '@angular/router/testing';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { AuthenticationService } from './_services/index';
+import { HttpModule } from '@angular/http';
+import { MockBackendService } from "./_mock-backend/mock-backend.service";
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { BaseRequestOptions, Http } from '@angular/http';
+
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -12,7 +18,17 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent, NavbarComponent, FooterComponent
       ],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, HttpModule],
+      providers: [
+        AuthenticationService,
+        MockBackend,
+        BaseRequestOptions,
+        {
+          provide: Http,
+          deps: [MockBackend, BaseRequestOptions],
+          useFactory: (backend: MockBackend, options: BaseRequestOptions) => { return new Http(backend, options); }
+        },
+      ]
     });
     TestBed.compileComponents();
   });

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExpcomponentComponent } from './expcomponent.component';
+import { FormService } from '../../_services/form.service';
 
 describe('ExpcomponentComponent', () => {
   let component: ExpcomponentComponent;
@@ -8,7 +9,10 @@ describe('ExpcomponentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExpcomponentComponent ]
+      declarations: [ ExpcomponentComponent ],
+      providers: [
+        FormService
+      ]
     })
     .compileComponents();
   }));

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTES } from './navbar.component.config';
 import { MenuType } from './navbar.component.metadata';
+import { AuthenticationService, UserService } from '../../_services/index'
 
 @Component({
   moduleId: module.id + '',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
   public brandMenu: any;
   isCollapsed = true;
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
@@ -31,15 +32,15 @@ export class NavbarComponent implements OnInit {
   }
 
   public isLoggedIn() {
-    return false;
+    return this.authService.isLoggedIn();
   }
 
   public isAdmin() {
-    return this.isLoggedIn() && true;
+    return this.authService.isAdmin();
   }
 
   public getCurrentUserName() {
-    return 'Yuxi';
+    return this.authService.getCurrentUserName();
   }
 
   isIn = false;   // store state

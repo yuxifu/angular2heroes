@@ -17,15 +17,24 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li (click)="isIn = false" *ngIf="isAdmin()"><a [routerLink]="admin" routerLinkActive="active">Admin</a></li>
-        <li (click)="isIn = false" *ngIf="!isLoggedIn()"><a [routerLink]="signup" routerLinkActive="active">Sign up</a></li>
-        <li (click)="isIn = false" *ngIf="!isLoggedIn()"><a [routerLink]="login" routerLinkActive="active">Login</a></li>
+        <li (click)="isIn = false" *ngIf="isAdmin()">
+          <a routerLink="admin" routerLinkActive="active">Admin</a>
+        </li>
+        <li (click)="isIn = false" *ngIf="!isLoggedIn()">
+          <a routerLink="signup" routerLinkActive="active">Sign up</a>
+        </li>
+        <li (click)="isIn = false" *ngIf="!isLoggedIn()">
+          <a routerLink="login" routerLinkActive="active">Login</a>
+        </li>
         <li (click)="isIn = false" *ngIf="isLoggedIn()">
           <p class="navbar-text">Hello {{ getCurrentUserName() }}</p>
         </li>
-        <li (click)="isIn = false" *ngIf="isLoggedIn()"> <a [routerLink]="profile" routerLinkActive="active"><span class="glyphicon glyphicon-cog"></span></a>
+        <li (click)="isIn = false" *ngIf="isLoggedIn()">
+          <a routerLink="profile" routerLinkActive="active"><span class="glyphicon glyphicon-cog"></span></a>
         </li>
-        <li (click)="isIn = false" *ngIf="isLoggedIn()"><a [routerLink]="logout" routerLinkActive="active">Logout</a></li>
+        <li (click)="isIn = false" *ngIf="isLoggedIn()">
+          <a routerLink="logout" routerLinkActive="active">Logout</a>
+        </li>
       </ul>
     </div>
   </div>

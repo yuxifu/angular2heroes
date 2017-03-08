@@ -9,14 +9,16 @@ import { Hero } from './hero';
 @Injectable()
 export class HeroService {
 
-    private heroesUrl = 'api/heroes';  // URL to web api
-
+    //private heroesUrl = 'api/heroes';  // URL to web api
+    private heroesUrl = 'http://localhost:4200/heroes';  // URL to web api, using MockBackEnd
+    
     constructor(private http: Http) { }
 
     getHeroes(): Promise<Hero[]> {
         return this.http.get(this.heroesUrl)
             .toPromise()
-            .then(response => response.json().data as Hero[])
+            //.then(response => response.json().data as Hero[])
+            .then(response => response.json() as Hero[]) //use MockBackend
             .catch(this.handleError);
     }
 
@@ -27,10 +29,10 @@ export class HeroService {
 
     getHero(id: number): Promise<Hero> {
         const url = `${this.heroesUrl}/${id}`;
-        console.log(url);
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Hero)
+            //.then(response => response.json().data as Hero)
+            .then(response => response.json() as Hero) //use MockBackend
             .catch(this.handleError);
     }
 
@@ -49,7 +51,8 @@ export class HeroService {
         return this.http
             .post(this.heroesUrl, JSON.stringify({ name: name }), { headers: this.headers })
             .toPromise()
-            .then(res => res.json().data)
+            //.then(res => res.json().data)
+            .then(res => res.json()) //use MockBackend
             .catch(this.handleError);
     }
 
@@ -60,21 +63,5 @@ export class HeroService {
             .then(() => null)
             .catch(this.handleError);
     }
-
-    /*getHeroes(): Promise<Hero[]> {
-        return Promise.resolve(HEROES);
-    }
-
-    getHeroesSlowly(): Promise<Hero[]> {
-        return new Promise(resolve => {
-            // Simulate server latency with 2 second delay
-            setTimeout(() => resolve(this.getHeroes()), 2000);
-        });
-    }
-
-    getHero(id: number): Promise<Hero> {
-        return this.getHeroes()
-            .then(heroes => heroes.find(hero => hero.id === id));
-    }*/
 
 }
