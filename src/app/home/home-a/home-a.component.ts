@@ -8,6 +8,8 @@ import {MdDialog, MdDialogRef} from '@angular/material';
 })
 export class HomeAComponent implements OnInit {
 
+  title = 'Angular 2 FlexLayout Demo';
+
   constructor(public dialog: MdDialog) { }
 
   ngOnInit() {

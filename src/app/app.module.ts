@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule} from "@angular/flex-layout";
 import { } from 'primeng/primeng';
 import {
   OrderListModule, DataTableModule, SharedModule,
@@ -78,6 +79,7 @@ import { FormService } from './_services/form.service';
 @NgModule({
   imports: [
     MaterialModule,
+    FlexLayoutModule,
     BrowserModule,
     FormsModule,
     //HttpModule,
