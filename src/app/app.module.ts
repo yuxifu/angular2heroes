@@ -76,6 +76,11 @@ import { AuthenticationService, UserService } from './_services/index';
 //
 import { FormService } from './_services/form.service';
 
+// named exported function
+export function httpFactory(backend: MockBackend, options: BaseRequestOptions) {
+    return new Http(backend, options);
+}
+
 @NgModule({
   imports: [
     MaterialModule,
@@ -137,7 +142,9 @@ import { FormService } from './_services/form.service';
     {
       provide: Http,
       deps: [MockBackend, BaseRequestOptions],
-      useFactory: (backend: MockBackend, options: BaseRequestOptions) => { return new Http(backend, options); }
+      useFactory: httpFactory, 
+      //code below is not working
+      //useFactory: (backend: MockBackend, options: BaseRequestOptions) => { return new Http(backend, options); }
     },
     MockBackendHeroes,
     MockBackendAuth,
